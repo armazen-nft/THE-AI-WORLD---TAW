@@ -14,11 +14,13 @@ import {
   WifiOff,
   Plus,
   MessageSquare,
-  Dna
+  Dna,
+  Zap
 } from 'lucide-react';
 
 export type NavTab =
   | 'explorer'
+  | 'proofofenergy'
   | 'chat'
   | 'bioscience'
   | 'graph'
@@ -45,13 +47,14 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navItems: { id: NavTab; label: string; icon: React.ReactNode }[] = [
     { id: 'explorer', label: 'Explorador', icon: <Compass className="w-4 h-4" /> },
+    { id: 'proofofenergy', label: 'Proof of Energy', icon: <Zap className="w-4 h-4 text-amber-400" /> },
     { id: 'chat', label: 'Chatbot IA', icon: <MessageSquare className="w-4 h-4" /> },
     { id: 'bioscience', label: '3D Biociência', icon: <Dna className="w-4 h-4" /> },
     { id: 'graph', label: 'Grafo Semântico', icon: <Network className="w-4 h-4" /> },
     { id: 'ai', label: 'Síntese IA', icon: <Brain className="w-4 h-4" /> },
     { id: 'database', label: 'DuckDB & Vetores', icon: <Database className="w-4 h-4" /> },
     { id: 'multiplatform', label: 'Multiplataforma', icon: <Package className="w-4 h-4" /> },
-    { id: 'deploy', label: 'Deploy & IPFS', icon: <Cloud className="w-4 h-4" /> },
+    { id: 'deploy', label: 'Deploy & RSS/Blogger', icon: <Cloud className="w-4 h-4" /> },
     { id: 'diagnostics', label: 'Diagnóstico', icon: <Activity className="w-4 h-4" /> },
   ];
 

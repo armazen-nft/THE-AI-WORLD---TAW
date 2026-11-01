@@ -15,6 +15,7 @@ import { OfflineIndicator } from './components/OfflineIndicator';
 import { AddPaperModal } from './components/AddPaperModal';
 import { GeminiChatbot } from './components/GeminiChatbot';
 import { Bioscience3DViewer } from './components/Bioscience3DViewer';
+import { ProofOfEnergyIngestor } from './components/ProofOfEnergyIngestor';
 import {
   Sparkles,
   ShieldCheck,
@@ -22,7 +23,8 @@ import {
   Layers,
   ArrowRight,
   ExternalLink,
-  Plus
+  Plus,
+  Zap
 } from 'lucide-react';
 
 export default function App() {
@@ -52,11 +54,21 @@ export default function App() {
     }
   };
 
-  const handleAddPaper = (newPaper: Paper) => {
+  const handleAddPaper = async (newPaper: Paper) => {
     const updated = [newPaper, ...papers];
     setPapers(updated);
     cachePapersForOffline(updated);
     setSelectedPaper(newPaper);
+
+    try {
+      await fetch('/api/papers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newPaper),
+      });
+    } catch (e) {
+      console.warn('Could not sync new paper to server RSS store:', e);
+    }
   };
 
   return (
@@ -95,7 +107,15 @@ export default function App() {
                   className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 text-white text-xs font-medium transition cursor-pointer shadow-md"
                 >
                   <Plus className="w-3.5 h-3.5" />
-                  <span>Agregar Artigo / Dataset</span>
+                  <span>Agregar Artigo</span>
+                </button>
+                <button
+                  onClick={() => setActiveTab('proofofenergy')}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-medium transition cursor-pointer"
+                  title="Pipeline inverso: Ingerir proofofenergy.blogspot.com do mais antigo ao mais recente"
+                >
+                  <Zap className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Proof of Energy (Ingest)</span>
                 </button>
                 <button
                   onClick={() => setActiveTab('chat')}
@@ -124,6 +144,14 @@ export default function App() {
             savedPaperIds={savedPaperIds}
             onUpdateBookmarks={refreshBookmarks}
             onOpenAddPaper={() => setIsAddModalOpen(true)}
+          />
+        )}
+
+        {activeTab === 'proofofenergy' && (
+          <ProofOfEnergyIngestor
+            onPaperPublished={handleAddPaper}
+            onSelectPaper={(p) => setSelectedPaper(p)}
+            allPapers={papers}
           />
         )}
 
