@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#090d16" />
+    </linearGradient>
+    <linearGradient id="primarySphere" x1="20%" y1="20%" x2="90%" y2="90%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="35%" stop-color="#6366f1" />
+      <stop offset="70%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#1d4ed8" />
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#818cf8" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="512" height="512" rx="120" fill="url(#bgGrad)" />
+
+  <!-- Ambient Glow -->
+  <circle cx="256" cy="256" r="220" fill="url(#glow)" />
+
+  <!-- Outer Orbital Rings (Academic citation network) -->
+  <ellipse cx="256" cy="256" rx="180" ry="85" fill="none" stroke="#6366f1" stroke-width="3" stroke-dasharray="8 6" opacity="0.6" transform="rotate(-30 256 256)" />
+  <ellipse cx="256" cy="256" rx="190" ry="90" fill="none" stroke="#38bdf8" stroke-width="2.5" opacity="0.45" transform="rotate(35 256 256)" />
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.4" />
+
+  <!-- Orbiting Knowledge Nodes -->
+  <circle cx="110" cy="190" r="10" fill="#38bdf8" />
+  <circle cx="110" cy="190" r="16" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.5" />
+  
+  <circle cx="400" cy="320" r="12" fill="#818cf8" />
+  <circle cx="400" cy="320" r="20" fill="none" stroke="#818cf8" stroke-width="2" opacity="0.5" />
+  
+  <circle cx="370" cy="160" r="8" fill="#a78bfa" />
+  <circle cx="140" cy="350" r="9" fill="#06b6d4" />
+
+  <!-- Core DataSphere -->
+  <circle cx="256" cy="256" r="105" fill="url(#primarySphere)" />
+
+  <!-- Latitude / Longitude lines inside sphere (Data grid) -->
+  <ellipse cx="256" cy="256" rx="105" ry="50" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.3" />
+  <ellipse cx="256" cy="256" rx="60" ry="105" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.3" />
+  <line x1="151" y1="256" x2="361" y2="256" stroke="#ffffff" stroke-width="2" opacity="0.35" />
+  <line x1="256" y1="151" x2="256" y2="361" stroke="#ffffff" stroke-width="2" opacity="0.35" />
+
+  <!-- Academic Diamond Crest / Scholar Beacon -->
+  <path d="M256 160 L320 256 L256 352 L192 256 Z" fill="none" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" opacity="0.9" />
+  <polygon points="256,180 305,256 256,332 207,256" fill="#ffffff" fill-opacity="0.15" />
+  <circle cx="256" cy="256" r="18" fill="#ffffff" />
+  <circle cx="256" cy="256" r="7" fill="#1e1b4b" />
+
+  <!-- Network Interconnect lines -->
+  <line x1="256" y1="160" x2="370" y2="160" stroke="#a78bfa" stroke-width="2" stroke-dasharray="4 4" opacity="0.7" />
+  <line x1="192" y1="256" x2="110" y2="190" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4 4" opacity="0.7" />
+  <line x1="320" y1="256" x2="400" y2="320" stroke="#818cf8" stroke-width="2" stroke-dasharray="4 4" opacity="0.7" />
+  <line x1="256" y1="352" x2="140" y2="350" stroke="#06b6d4" stroke-width="2" stroke-dasharray="4 4" opacity="0.7" />
+</svg>

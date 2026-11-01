@@ -1,0 +1,6 @@
+{
+  "name": "DataSphere Academic",
+  "description": "Plataforma acadêmica avançada com motor de pesquisa científica, busca semântica, PWA instalável, empacotador multiplataforma (Tauri/Capacitor) e distribuição descentralizada IPFS.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
