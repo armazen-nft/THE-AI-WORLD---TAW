@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Paper } from '../types/academic';
-import { projectQueryToVector } from '../services/vectorSearch';
+import { projectQueryToVector, projectQueryTo384Vector, paperVectorStore } from '../services/vectorSearch';
 import { X, Plus, Sparkles, ShieldCheck, Check, Upload } from 'lucide-react';
 
 interface AddPaperModalProps {
@@ -73,6 +73,10 @@ export const AddPaperModal: React.FC<AddPaperModalProps> = ({
       citedBy: [],
       reproducibilityScore: 95,
     };
+
+    // Register 384d vector in paperVectorStore for instant neural semantic discovery
+    const dense384 = projectQueryTo384Vector(`${title} ${abstract} ${field} ${keywords}`);
+    paperVectorStore.set(generatedId, dense384);
 
     onAddPaper(newPaper);
     setIsSubmitting(false);

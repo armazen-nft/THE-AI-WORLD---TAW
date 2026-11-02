@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Paper } from './types/academic';
 import { INITIAL_PAPERS } from './data/mockPapers';
 import { getBookmarks, cachePapersForOffline, getCachedPapers } from './services/storage';
+import { paperVectorStore, projectQueryTo384Vector } from './services/vectorSearch';
 import { Navbar, NavTab } from './components/Navbar';
 import { ResearchExplorer } from './components/ResearchExplorer';
 import { CitationGraph } from './components/CitationGraph';
@@ -55,6 +56,14 @@ export default function App() {
   };
 
   const handleAddPaper = async (newPaper: Paper) => {
+    // Ensure 384d vector embedding is cached for neural semantic search
+    if (!paperVectorStore.has(newPaper.id)) {
+      paperVectorStore.set(
+        newPaper.id,
+        projectQueryTo384Vector(`${newPaper.title} ${newPaper.abstract} ${newPaper.keywords.join(' ')}`)
+      );
+    }
+
     const updated = [newPaper, ...papers];
     setPapers(updated);
     cachePapersForOffline(updated);
